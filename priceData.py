@@ -9,7 +9,7 @@ pApi = 'gvmfl1vyDKqYI6PHEtV4xPCfUmAEYSCu'
 
 def priceDataCG(coins, sDay, sMonth, sYear):
     priceDict={}
-    for i in range(0,15):
+    for i in range(0,):
         date = str(sDay+i)+'-'+str(sMonth)+'-'+str(sYear)
         x = requests.get('https://api.coingecko.com/api/v3/coins/joe/history?date=' +date+'&localization=usd' + '?format=json' )
         check = x.json()
@@ -17,7 +17,7 @@ def priceDataCG(coins, sDay, sMonth, sYear):
         priceDict[date] = price
     print(priceDict)
 
-def priceData(coins, sDay, sMonth, sYear):
+def priceDataPoly(coins, sDay, sMonth, sYear):
     
     for i in range(0,1):
         if(sDay > 9):
