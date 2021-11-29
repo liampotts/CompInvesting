@@ -8,14 +8,30 @@ cg = CoinGeckoAPI()
 pApi = 'gvmfl1vyDKqYI6PHEtV4xPCfUmAEYSCu'
 
 def priceDataCG(coins, sDay, sMonth, sYear):
-    priceDict={}
-    for i in range(0,):
-        date = str(sDay+i)+'-'+str(sMonth)+'-'+str(sYear)
-        x = requests.get('https://api.coingecko.com/api/v3/coins/joe/history?date=' +date+'&localization=usd' + '?format=json' )
-        check = x.json()
-        price = check["market_data"]["current_price"]['usd']
-        priceDict[date] = price
-    print(priceDict)
+    days = 1
+    prices = []
+    dates = []
+    for coin in range(0,len(coins)):
+        tmpPrices = []
+        tmpDates = []
+        print(coins[coin])
+        for i in range(0,1):
+            date = str(sDay+i)+'-'+str(sMonth)+'-'+str(sYear)
+            x = requests.get('https://api.coingecko.com/api/v3/coins/'+coins[coin]+'/history?date=' +date+'&localization=usd' + '?format=json' )
+            check = x.json()
+            price = check["market_data"]["current_price"]['usd']
+            #priceDict[date] = price
+
+            tmpPrices.append(price)
+            tmpDates.append(date)
+
+        prices.append(tmpPrices)
+        dates.append(tmpDates)
+        #print(priceDict)
+        #coinPrices.append(priceDict)
+        
+    print(prices)
+    print(dates)
 
 def priceDataPoly(coins, sDay, sMonth, sYear):
     
@@ -30,7 +46,7 @@ def priceDataPoly(coins, sDay, sMonth, sYear):
         print(check["close"])
 
 def main():
-    coins = ['joe']
+    coins = ['joe', 'bitcoin']
     sDay = 1
     sMonth = 11
     sYear = 2021
